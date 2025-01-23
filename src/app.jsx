@@ -1,8 +1,12 @@
-const App = () => {
+import React from 'react'
+import { CalendarPage } from './components/calendarPage'
+
+function App() {
   return (
-    <>
-      <h1>Boilerplace + React</h1>
-    </>
+    <div className="App">
+      <h1>Calendário de Torneios Heroclix</h1>
+      <CalendarPage />
+    </div>
   )
 }
 
