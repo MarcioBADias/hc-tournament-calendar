@@ -30,7 +30,7 @@ const CalendarPage = () => {
   }
 
   const sortedTournaments = [...state.tournaments].sort(
-    (a, b) => new Date(b.date) - new Date(a.date),
+    (a, b) => new Date(a.date) - new Date(b.date),
   )
 
   return (
