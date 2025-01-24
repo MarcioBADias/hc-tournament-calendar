@@ -1,24 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const TournamentForm = ({ addTournament, closeForm }) => {
-  const [name, setName] = useState('')
-  const [date, setDate] = useState('')
-  const [league, setLeague] = useState('')
-  const [location, setLocation] = useState('')
-
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (name && date && league && location) {
-      addTournament({
-        name,
-        date,
-        league,
-        location,
-      })
-      closeForm()
-    } else {
-      alert('Preencha todos os campos!')
+    const newTournament = {
+      name: e.target.name.value,
+      date: e.target.date.value,
+      location: e.target.location.value,
+      league: e.target.league.value,
     }
+
+    addTournament(newTournament)
+    closeForm()
   }
 
   return (
@@ -26,29 +19,20 @@ const TournamentForm = ({ addTournament, closeForm }) => {
       <h3>Cadastrar Torneio</h3>
       <div>
         <label>Nome do Evento:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+        <input type="text" name="name" placeholder="nome do evento" required />
       </div>
       <div>
         <label>Data:</label>
         <input
           type="datetime-local"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          name="date"
+          placeholder="data do evento"
           required
         />
       </div>
       <div>
         <label>Liga:</label>
-        <select
-          value={league}
-          onChange={(e) => setLeague(e.target.value)}
-          required
-        >
+        <select name="league" placeholder="liga do evento" required>
           <option value="">Selecione</option>
           <option value="Rio de Janeiro">Rio de Janeiro</option>
           <option value="Cabo Frio">Cabo Frio</option>
@@ -61,15 +45,15 @@ const TournamentForm = ({ addTournament, closeForm }) => {
         <label>Local:</label>
         <input
           type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          name="location"
+          placeholder="local do evento"
           required
         />
       </div>
       <button className="btn" type="submit">
         Cadastrar Torneio
       </button>
-      <button type="button" onClick={closeForm}>
+      <button className="btn" type="button" onClick={closeForm}>
         Cancelar
       </button>
     </form>
