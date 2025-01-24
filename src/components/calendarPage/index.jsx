@@ -1,34 +1,52 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 import { TournamentForm } from '../tournamentForm'
 
+const reduce = (state, action) => {
+  if (action.type === 'add_event') {
+    return { ...state, tournaments: [...state.tournaments, action.tournament] }
+  }
+
+  if (action.type === 'toggle_state_form') {
+    return { ...state, isFormOpen: !state.isFormOpen }
+  }
+
+  return state
+}
+
+const initialState = {
+  tournaments: [],
+  isFormOpen: false,
+}
+
 const CalendarPage = () => {
-  const [tournaments, setTournaments] = useState([])
-  const [isFormOpen, setIsFormOpen] = useState(false)
+  const [state, dispatch] = useReducer(reduce, initialState)
 
   const addTournament = (tournament) => {
-    setTournaments((prevTournaments) => [...prevTournaments, tournament])
+    dispatch({ type: 'add_event', tournament })
   }
 
   const toggleForm = () => {
-    setIsFormOpen(!isFormOpen)
+    dispatch({ type: 'toggle_state_form' })
   }
 
-  const sortedTournaments = [...tournaments].sort(
+  const sortedTournaments = [...state.tournaments].sort(
     (a, b) => new Date(b.date) - new Date(a.date),
   )
 
   return (
     <div>
-      <button onClick={toggleForm}>Adicionar Torneio</button>
+      <button className="btn" onClick={toggleForm}>
+        Adicionar Torneio
+      </button>
 
-      {isFormOpen && (
+      {state.isFormOpen && (
         <TournamentForm addTournament={addTournament} closeForm={toggleForm} />
       )}
 
       <h2>Calendário de Torneios</h2>
-      <ul>
+      <ul className="container">
         {sortedTournaments.map((tournament, index) => (
-          <li key={index}>
+          <li className="eventContainer" key={index}>
             <h3>{tournament.name}</h3>
             <p>
               <strong>Data:</strong>{' '}

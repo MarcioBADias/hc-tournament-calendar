@@ -66,7 +66,9 @@ const TournamentForm = ({ addTournament, closeForm }) => {
           required
         />
       </div>
-      <button type="submit">Cadastrar Torneio</button>
+      <button className="btn" type="submit">
+        Cadastrar Torneio
+      </button>
       <button type="button" onClick={closeForm}>
         Cancelar
       </button>
