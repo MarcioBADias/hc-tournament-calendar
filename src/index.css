@@ -36,19 +36,6 @@ h1 {
   cursor: pointer;
 }
 
-.container {
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.eventContainer {
-  border-radius: 15px;
-  background-color: blueviolet;
-  padding: 1rem;
-}
-
 ul {
   list-style: none;
 }

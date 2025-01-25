@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import { TournamentForm } from '../tournamentForm'
+import * as S from './style'
 
 const reduce = (state, action) => {
   if (action.type === 'add_event') {
@@ -17,6 +18,17 @@ const initialState = {
   tournaments: [],
   isFormOpen: false,
 }
+
+const currentMOnth = new Date(tournament.date)
+  .toLocaleString('pt-BR', {
+    month: 'short',
+  })
+  .toUpperCase()
+
+const currentHour = new Date(tournament.date).toLocaleString('pt-BR', {
+  hour: '2-digit',
+  minute: '2-digit',
+})
 
 const CalendarPage = () => {
   const [state, dispatch] = useReducer(reduce, initialState)
@@ -44,23 +56,24 @@ const CalendarPage = () => {
       )}
 
       <h2>Calendário de Torneios</h2>
-      <ul className="container">
+      <S.Container>
         {sortedTournaments.map((tournament, index) => (
-          <li className="eventContainer" key={index}>
-            <h3>{tournament.name}</h3>
-            <p>
-              <strong>Data:</strong>{' '}
-              {new Date(tournament.date).toLocaleString()}
-            </p>
-            <p>
-              <strong>Local:</strong> {tournament.location}
-            </p>
-            <p>
-              <strong>Liga:</strong> {tournament.league}
-            </p>
-          </li>
+          <S.EventBox className="eventContainer" key={index}>
+            <S.Month>{currentMOnth}</S.Month>
+            <div>
+              <p>Comeco as {currentHour} horas</p>
+              <h2>{tournament.name}</h2>
+              <p>
+                <strong>Local:</strong> {tournament.location}
+              </p>
+              <p>
+                <strong>Liga:</strong> {tournament.league}
+              </p>
+            </div>
+            <img src="#" alt="Logo da Liga" />
+          </S.EventBox>
         ))}
-      </ul>
+      </S.Container>
     </div>
   )
 }
