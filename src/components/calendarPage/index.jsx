@@ -86,7 +86,7 @@ const CalendarPage = () => {
         />
       )}
 
-      <h2>Calendário de Torneios</h2>
+      <h2 style={{ marginLeft: '1rem' }}>Próximo evento:</h2>
       <S.Container>
         {sortedTournaments.map((tournament, index) => (
           <S.EventBox className="eventContainer" key={index}>

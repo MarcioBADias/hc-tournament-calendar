@@ -32,7 +32,7 @@ h1 {
 
 .btn {
   padding: 1rem 1.5rem;
-  margin-top: 1rem;
+  margin: 1rem;
   cursor: pointer;
 }
 
@@ -41,8 +41,8 @@ ul {
 }
 
 form {
-  margin: 20px 0;
-  padding: 20px;
+  margin: 2rem 1rem;
+  padding: 2rem;
   background-color: #fff;
   border-radius: 5px;
 }
