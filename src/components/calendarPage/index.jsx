@@ -3,6 +3,9 @@ import axios from 'axios'
 import { TournamentForm } from '../tournamentForm'
 import * as S from './style'
 
+const API_endPoint =
+  'https://hc-tournament-calendar-backend-production.up.railway.app'
+
 const reduce = (state, action) => {
   if (action.type === 'set_tournament') {
     return { ...state, tournaments: action.tournaments }
@@ -41,7 +44,7 @@ const CalendarPage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/tournaments')
+      .get(`${API_endPoint}/api/tournaments`)
       .then((res) =>
         dispatch({ type: 'set_tournament', tournaments: res.data }),
       )
@@ -50,7 +53,7 @@ const CalendarPage = () => {
 
   const addNewTournament = (tournament) => {
     axios
-      .post('http://localhost:5000/api/tournaments', tournament)
+      .post(`${API_endPoint}/api/tournaments`, tournament)
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           dispatch({ type: 'add_event', tournament: res.data })
