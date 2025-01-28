@@ -69,6 +69,22 @@ const CalendarPage = () => {
     dispatch({ type: 'toggle_state_form' })
   }
 
+  const leagueLogo = (league) => {
+    switch (league) {
+      case 'Rio de Janeiro':
+        return '/fellowshipClix.png'
+
+      case 'Cabo Frio':
+        return '/lagosClix.png'
+
+      case 'Nova Iguaçu':
+        return '/novaIguacuCLix.png'
+
+      default:
+        return 'inter_League.png'
+    }
+  }
+
   const sortedTournaments = [...state.tournaments].sort(
     (a, b) => new Date(a.date) - new Date(b.date),
   )
@@ -92,7 +108,7 @@ const CalendarPage = () => {
           <S.EventBox className="eventContainer" key={index}>
             <S.Month>{currentMOnth(tournament.date)}</S.Month>
             <div>
-              <p>Comeco as {currentHour(tournament.date)} horas</p>
+              <p>Inicio as {currentHour(tournament.date)} horas</p>
               <h2>{tournament.name}</h2>
               <p>
                 <strong>Local:</strong> {tournament.location}
@@ -101,7 +117,10 @@ const CalendarPage = () => {
                 <strong>Liga:</strong> {tournament.league}
               </p>
             </div>
-            <img src="#" alt="Logo da Liga" />
+            <S.LogoIcon
+              src={leagueLogo(tournament.league)}
+              alt="Logo da Liga"
+            />
           </S.EventBox>
         ))}
       </S.Container>
