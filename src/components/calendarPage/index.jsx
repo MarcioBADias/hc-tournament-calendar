@@ -1,6 +1,8 @@
 import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { TournamentForm } from '../tournamentForm'
+import { BiSolidArchiveOut } from 'react-icons/bi'
+import { TiDelete, TiInputChecked } from 'react-icons/ti'
 import * as S from './style'
 
 const API_endPoint =
@@ -121,6 +123,11 @@ const CalendarPage = () => {
               src={leagueLogo(tournament.league)}
               alt="Logo da Liga"
             />
+            <div>
+              <TiDelete />
+              <TiInputChecked />
+              <BiSolidArchiveOut />
+            </div>
           </S.EventBox>
         ))}
       </S.Container>
