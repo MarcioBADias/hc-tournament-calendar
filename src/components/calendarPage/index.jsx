@@ -67,6 +67,24 @@ const CalendarPage = () => {
       .catch((error) => console.log('erro ao criar o torneio: ', error))
   }
 
+  const deleteTournament = (id) => {
+    window.confirm('Tem certeza que deseja excluir esse torneio?') &&
+      axios
+        .delete(`${API_endPoint}/api/tournaments/${id}`)
+        .then((res) => {
+          res.status === 200 &&
+            dispatch({
+              type: 'set_tournament',
+              tournaments: state.tounaments.filter(
+                (tournament) => tournament._id !== id,
+              ),
+            })
+        })
+        .catch((error) =>
+          console.log('Erro ao tentar deletaro torneio: ', error),
+        )
+  }
+
   const toggleForm = () => {
     dispatch({ type: 'toggle_state_form' })
   }
@@ -124,7 +142,7 @@ const CalendarPage = () => {
               alt="Logo da Liga"
             />
             <div>
-              <TiDelete />
+              <TiDelete onClick={() => deleteTournament(tournament._id)} />
               <TiInputChecked />
               <BiSolidArchiveOut />
             </div>
