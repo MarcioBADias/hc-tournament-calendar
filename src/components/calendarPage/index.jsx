@@ -75,7 +75,7 @@ const CalendarPage = () => {
           res.status === 200 &&
             dispatch({
               type: 'set_tournament',
-              tournaments: state.tounaments.filter(
+              tournaments: state.tournaments.filter(
                 (tournament) => tournament._id !== id,
               ),
             })
