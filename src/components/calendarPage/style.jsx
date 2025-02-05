@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { BiSolidArchiveOut } from 'react-icons/bi'
 
 export const Container = styled.ul`
   margin: 1rem 0;
@@ -37,5 +38,15 @@ export const LogoIcon = styled.img`
     margin-left: 5rem;
     width: 10%;
     height: 10%;
+  }
+`
+
+export const ClickedIcons = (icon) => styled(icon)`
+  min-width: 50px;
+  min-height: 50px;
+
+  @media (min-width: 600px) {
+    width: 30%;
+    height: 30%;
   }
 `

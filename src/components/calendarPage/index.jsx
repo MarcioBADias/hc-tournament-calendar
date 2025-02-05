@@ -5,6 +5,10 @@ import { BiSolidArchiveOut } from 'react-icons/bi'
 import { TiDelete, TiInputChecked } from 'react-icons/ti'
 import * as S from './style'
 
+const ArquiveIcon = S.ClickedIcons(BiSolidArchiveOut)
+const DeleteIcon = S.ClickedIcons(TiDelete)
+const CheckedIcon = S.ClickedIcons(TiInputChecked)
+
 const API_endPoint =
   'https://hc-tournament-calendar-backend-production.up.railway.app'
 
@@ -142,9 +146,9 @@ const CalendarPage = () => {
               alt="Logo da Liga"
             />
             <div>
-              <TiDelete onClick={() => deleteTournament(tournament._id)} />
-              <TiInputChecked />
-              <BiSolidArchiveOut />
+              <DeleteIcon onClick={() => deleteTournament(tournament._id)} />
+              <CheckedIcon />
+              <ArquiveIcon />
             </div>
           </S.EventBox>
         ))}
